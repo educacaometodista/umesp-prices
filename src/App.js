@@ -19,6 +19,15 @@ function App() {
     });
   }, []);
 
+if (data.length === 0) {
+  return (
+    <>
+      <h1>Carregando!</h1>
+    </>
+  )
+}
+
+
   return (
     <>
       <table>
@@ -34,31 +43,22 @@ function App() {
         <tbody>
           {data.map(obj => {
             return (
-              <tr key={obj.index}>
-                <td id={`curso-${obj.Curso}`.replace(/\s/g, '-').toLowerCase()}>
+              <tr key={obj.Curso}>
+                <td>
                   {obj.Curso}
                 </td>
-                <td
-                  id={`referencia-${obj.Curso}`
-                    .replace(/\s/g, '-')
-                    .toLowerCase()}
-                >
+                <td>
                   {obj.Referência}
                 </td>
-                <td id={`valor-${obj.Curso}`.replace(/\s/g, '-').toLowerCase()}>
+                <td>
                   {obj.Valor}
                 </td>
-                <td
-                  id={`antecipado-${obj.Curso}`
-                    .replace(/\s/g, '-')
-                    .toLowerCase()}
-                  className="text-success"
-                >
+                <td>
                   {obj.Antecipado}
                 </td>
                 <td>
                   <a
-                    href={ie + obj.Curso.toLowerCase().replace(/\s/g, '-')}
+                    href={`${ie}/graduacao-presencial/${obj.Curso.toLowerCase().replace(/\s/g, '-')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-success btn-sm"
