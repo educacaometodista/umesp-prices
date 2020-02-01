@@ -3,6 +3,8 @@ import Tabletop from 'tabletop';
 import FilterResults from 'react-filter-search';
 import ContentLoader from 'react-content-loader';
 
+import './App.css';
+
 function App() {
   const [data, setData] = useState([]);
   const [value, setValue] = useState('');
@@ -63,12 +65,13 @@ function App() {
 
   return (
     <>
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        Pesquisar curso
+      <div className="search-div">
+        <span className="search-text">Pesquisar curso</span>
         <input
           name="searchKeyword"
           id="searchKeyword"
           placeholder="Pesquise por Curso"
+          class="search-course"
           value={value}
           onChange={handleChange}
         />
