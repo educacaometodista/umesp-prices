@@ -1,7 +1,78 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Tabletop from 'tabletop';
 
-// import { Container } from './styles';
+function App() {
+  const [data, setData] = useState([]);
+  const ie = 'http://metodista.br/';
 
-export default function App() {
-  return <h1>Hello Metô</h1>;
+  useEffect(() => {
+    Tabletop.init({
+      key: '1QpPgpAKyZXvwirnHekmSWqYsaT7s0B4Szd0UsYEEPJw',
+      orderby: 'Curso',
+      reverse: false,
+      wanted: ['UMESP'],
+
+      callback: googleData => {
+        setData(googleData);
+      },
+      simpleSheet: true,
+    });
+  }, []);
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome do Curso</th>
+            <th>Referência</th>
+            <th>Valor Real</th>
+            <th>Valor com Desconto</th>
+            <th>Página do Curso</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map(obj => {
+            return (
+              <tr key={obj.index}>
+                <td id={`curso-${obj.Curso}`.replace(/\s/g, '-').toLowerCase()}>
+                  {obj.Curso}
+                </td>
+                <td
+                  id={`referencia-${obj.Curso}`
+                    .replace(/\s/g, '-')
+                    .toLowerCase()}
+                >
+                  {obj.Referência}
+                </td>
+                <td id={`valor-${obj.Curso}`.replace(/\s/g, '-').toLowerCase()}>
+                  {obj.Valor}
+                </td>
+                <td
+                  id={`antecipado-${obj.Curso}`
+                    .replace(/\s/g, '-')
+                    .toLowerCase()}
+                  className="text-success"
+                >
+                  {obj.Antecipado}
+                </td>
+                <td>
+                  <a
+                    href={ie + obj.Curso.toLowerCase().replace(/\s/g, '-')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-success btn-sm"
+                  >
+                    Conhecer Curso
+                  </a>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </>
+  );
 }
+
+export default App;
