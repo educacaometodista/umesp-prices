@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Tabletop from 'tabletop';
 
+import ContentLoader from 'react-content-loader'
+
 function App() {
   const [data, setData] = useState([]);
   const ie = 'http://metodista.br/';
@@ -19,13 +21,38 @@ function App() {
     });
   }, []);
 
-if (data.length === 0) {
+  const MyLoader = () => (
+    <ContentLoader viewBox="0 0 380 150">
+      { /* Row 1 */ }
+      <rect x="0" y="17" rx="5" ry="5" width="70" height="10" />
+      <rect x="80" y="17" rx="5" ry="5" width="70" height="10" />
+      <rect x="160" y="17" rx="5" ry="5" width="70" height="10" />
+      <rect x="240" y="17" rx="5" ry="5" width="70" height="10" />
+      { /* Row 2 y="17 + (17)" */ }
+      <rect x="0" y="34" rx="5" ry="5" width="70" height="10" />
+      <rect x="80" y="34" rx="5" ry="5" width="70" height="10" />
+      <rect x="160" y="34" rx="5" ry="5" width="70" height="10" />
+      <rect x="240" y="34" rx="5" ry="5" width="70" height="10" />
+      { /* Row 3 y="17 + (17) + (17)" */ }
+      <rect x="0" y="51" rx="5" ry="5" width="70" height="10" />
+      <rect x="80" y="51" rx="5" ry="5" width="70" height="10" />
+      <rect x="160" y="51" rx="5" ry="5" width="70" height="10" />
+      <rect x="240" y="51" rx="5" ry="5" width="70" height="10" />
+      { /* Row 4 y="17 + (17) + (17) + (17)" */ }
+      <rect x="0" y="68" rx="5" ry="5" width="70" height="10" />
+      <rect x="80" y="68" rx="5" ry="5" width="70" height="10" />
+      <rect x="160" y="68" rx="5" ry="5" width="70" height="10" />
+      <rect x="240" y="68" rx="5" ry="5" width="70" height="10" />
+    </ContentLoader>
+  )
+
+ if (data.length === 0) {
   return (
     <>
-      <h1>Carregando!</h1>
+      <MyLoader />
     </>
   )
-}
+ }
 
 
   return (
@@ -37,7 +64,7 @@ if (data.length === 0) {
             <th>Referência</th>
             <th>Valor Real</th>
             <th>Valor com Desconto</th>
-            <th>Página do Curso</th>
+            <th>Conhecer o Curso</th>
           </tr>
         </thead>
         <tbody>
