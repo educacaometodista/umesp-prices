@@ -10,11 +10,14 @@ function App() {
   const [val, setVal] = useState('');
 
   useEffect(() => {
+    const url = window.location.href;
+
     Tabletop.init({
       key: '1QpPgpAKyZXvwirnHekmSWqYsaT7s0B4Szd0UsYEEPJw',
       orderby: 'Curso',
       reverse: false,
-      wanted: ['Presencial'],
+      wanted: url.indexOf('a-distancia') > -1 ? ['EAD'] : ['Presencial'],
+      // Verificação da URL para direcionar a aba correta
 
       callback: googleData => {
         setData(googleData);
