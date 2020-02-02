@@ -7,14 +7,14 @@ import './App.css';
 
 function App() {
   const [data, setData] = useState([]);
-  const [value, setValue] = useState('');
+  const [val, setVal] = useState('');
 
   useEffect(() => {
     Tabletop.init({
       key: '1QpPgpAKyZXvwirnHekmSWqYsaT7s0B4Szd0UsYEEPJw',
       orderby: 'Curso',
       reverse: false,
-      wanted: ['UMESP'],
+      wanted: ['Presencial'],
 
       callback: googleData => {
         setData(googleData);
@@ -26,7 +26,7 @@ function App() {
   function handleChange(event) {
     const { value } = event.target;
 
-    setValue(value);
+    setVal(value);
   }
 
   const MyLoader = () => (
@@ -70,7 +70,7 @@ function App() {
           id="searchKeyword"
           placeholder="Pesquise por Curso"
           className="search-course"
-          value={value}
+          value={val}
           onChange={handleChange}
         />
         <span className="search-icon" />
@@ -81,16 +81,16 @@ function App() {
             <th>Nome do Curso</th>
             <th>Referência</th>
             <th>Valor Real</th>
-            <th>Valor com Desconto</th>
+            <th>Valor para Pagamento Antecipado*</th>
             <th>Conhecer o Curso</th>
           </tr>
         </thead>
         <FilterResults
-          value={value}
+          value={val}
           data={data}
-          renderResults={data => (
+          renderResults={d => (
             <tbody>
-              {data.map(obj => {
+              {d.map(obj => {
                 return (
                   <tr key={obj.Curso}>
                     <td>{obj.Curso}</td>
