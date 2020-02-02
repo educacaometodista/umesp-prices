@@ -8,7 +8,6 @@ import './App.css';
 function App() {
   const [data, setData] = useState([]);
   const [value, setValue] = useState('');
-  const ie = 'http://metodista.br/';
 
   useEffect(() => {
     Tabletop.init({
@@ -66,16 +65,15 @@ function App() {
   return (
     <>
       <div className="search-div">
-        <span className="search-text">Pesquisar curso</span>
         <input
           name="searchKeyword"
           id="searchKeyword"
           placeholder="Pesquise por Curso"
-          class="search-course"
+          className="search-course"
           value={value}
           onChange={handleChange}
         />
-        <span className="search-icon"></span>
+        <span className="search-icon" />
       </div>
       <table>
         <thead>
@@ -101,10 +99,7 @@ function App() {
                     <td>{obj.Antecipado}</td>
                     <td>
                       <a
-                        href={`${ie}/graduacao-presencial/${obj.Curso.toLowerCase().replace(
-                          /\s/g,
-                          '-'
-                        )}`}
+                        href={obj.Link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-success btn-sm"
